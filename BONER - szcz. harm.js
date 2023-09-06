@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         BONER - szcz. harm
 // @namespace    https://app.beeoffice.com/
-// @version      0.0.6
+// @version      0.0.7
 // @description  BeeOffice New Extensions Reduced - szczegóły harmonogramów
 // @author       Damian Dembczyński
 // @match        https://app.beeoffice.com/Ustawienia/TimeSchedules/TimeSchedulesDetails/TimeSchedulesDEtailsEdit.aspx*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=beeoffice.com
+// @updateURL    https://raw.githubusercontent.com/dbczynski/flex-userjs/main/BONER%20-%20szcz.%20harm.js
+// @downloadURL  https://raw.githubusercontent.com/dbczynski/flex-userjs/main/BONER%20-%20szcz.%20harm.js
 // @grant        GM_log
 // @run-at       document-end
 // ==/UserScript==
@@ -27,18 +29,20 @@
 // - major overhaul to the UI, to the code and also eliminated unnecessery reloads.
 //v0.0.6
 // - minor UI improvments
+//v0.0.7
+// - adding compatibility with hour-time schedule
 
-
-(function() {
+(function () {
     'use strict';
 
-//existing website elements
-	var parentRow = document.querySelector("#ctl00_ctl00_ContentBodyBase_ContentBody_TableType > tbody > tr:first-child");
-	var modeList = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dropDownListMode");
-	var inputOd = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDate_TextBoxTime")
-	var inputDo = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDateTo_TextBoxTime")
 
-    const uselessButton = document.createElement("button")
+    //existing website elements
+    var parentRow = document.querySelector("#ctl00_ctl00_ContentBodyBase_ContentBody_TableType > tbody > tr:first-child");
+    var modeList = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dropDownListMode");
+    var inputOd = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDate_TextBoxTime");
+    var inputDo = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDateTo_TextBoxTime");
+    var inputCzas = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_textBoxTime");
+    const uselessButton = document.createElement("button");
     uselessButton.id = "accept";
     uselessButton.style.border = "none";
     parentRow.appendChild(uselessButton);
@@ -48,56 +52,58 @@
     afterSave.id = "afterSave";
     afterSave.innerHTML = "Nie zapisz";
     afterSave.style.display = "none";
-
     saveButton.parentElement.insertBefore(afterSave, saveButton)
-    if( modeList.value == "2" && (inputOd.value == "00:00" || inputOd.value == "") && (inputDo.value == "00:00" || inputDo.value == "")){
-        saveButton.style.display = "none";
-        afterSave.style.display = "block";
+
+    if (modeList != null) {
+
+        if (modeList.value == "2" && (inputOd.value == "00:00" || inputOd.value == "") && (inputDo.value == "00:00" || inputDo.value == "")) {
+            saveButton.style.display = "none";
+            afterSave.style.display = "block";
+        }
+
+        // add <script>
+        const ttblFn = `
+    function disableEnableSave(){
+        var inputOd = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDate_TextBoxTime");
+        var inputDo = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDateTo_TextBoxTime");
+        var saveButton = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_NeOFormControl_ButtonSave_ButtonSave");
+        var afterSave = document.getElementById("afterSave");
+        var modeList = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dropDownListMode");
+
+        if(modeList.value == "2" && (inputOd.value == "00:00" || inputOd.value == "") && (inputDo.value == "00:00" || inputDo.value == "")){
+            saveButton.style.display = "none";
+            afterSave.style.display = "block";
+        } else {
+            saveButton.style.display = "block";
+            afterSave.style.display = "none";
+        }
+
+        var wolneButton = document.getElementById("wolneButton");
+        var zakresButton = document.getElementById("zakresButton");
+
+        if(modeList.value == "2"){
+            wolneButton.style.display = "block";
+            zakresButton.style.display = "none";
+        } else {
+            wolneButton.style.display = "none";
+            zakresButton.style.display = "block";
+        }
     }
-
-    // add <script>
-    const ttblFn = `
-function disableEnableSave(){
-	var inputOd = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDate_TextBoxTime");
-	var inputDo = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDateTo_TextBoxTime");
-	var saveButton = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_NeOFormControl_ButtonSave_ButtonSave");
-	var afterSave = document.getElementById("afterSave");
-    var modeList = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dropDownListMode");
-
-	if(modeList.value == "2" && (inputOd.value == "00:00" || inputOd.value == "") && (inputDo.value == "00:00" || inputDo.value == "")){
-		saveButton.style.display = "none";
-		afterSave.style.display = "block";
-	} else {
-		saveButton.style.display = "block";
-		afterSave.style.display = "none";
-	}
-
-    var wolneButton = document.getElementById("wolneButton");
-    var zakresButton = document.getElementById("zakresButton");
-
-    if(modeList.value == "2"){
-        wolneButton.style.display = "block";
-        zakresButton.style.display = "none";
-    } else {
-        wolneButton.style.display = "none";
-        zakresButton.style.display = "block";
+    function ttbl(startTime, endTime){
+        document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDate_TextBoxTime").value = startTime;
+        document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDateTo_TextBoxTime").value = endTime;
+        disableEnableSave();
     }
-}
-function ttbl(startTime, endTime){
-	document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDate_TextBoxTime").value = startTime;
-	document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDateTo_TextBoxTime").value = endTime;
-    disableEnableSave();
-}
-function setMode(value){
-    document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dropDownListMode").value = value;
-    disableEnableSave();
-}`
-    const ttblSc = document.createElement("script")
-    ttblSc.innerHTML = ttblFn;
-    parentRow.appendChild(ttblSc);
+    function setMode(value){
+        document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dropDownListMode").value = value;
+        disableEnableSave();
+    }`
+        const ttblSc = document.createElement("script")
+        ttblSc.innerHTML = ttblFn;
+        parentRow.appendChild(ttblSc);
 
-    //create time buttons
-    const timeTable = `
+        //create time buttons
+        const timeTable = `
     <table>
         <colgroup span="1" class="col1"/>
         <colgroup span="3"/>
@@ -143,16 +149,32 @@ function setMode(value){
          <button class="buttonWithoutIcon iconButton buttonHighlighted bigIconButton" type="button" onclick='setMode("3"); ttbl("","")' id="wolneButton" > > set 00 - 00</button>
     </td></tr>
     </table>`
-    const zakresBtn = `<button class="buttonWithoutIcon iconButton buttonHighlighted bigIconButton" onclick='setMode("2")' id="zakresButton"> > zakres</button>`;
-	var cell = document.createElement("td");
-    cell.id = "ttbl";
-    if((modeList.value == "2")) cell.innerHTML = timeTable;
-    else cell.innerHTML = zakresBtn
-    cell.rowSpan = "10"
-	parentRow.appendChild(cell);
+        const zakresBtn = `<button class="buttonWithoutIcon iconButton buttonHighlighted bigIconButton" onclick='setMode("2")' id="zakresButton"> > zakres</button>`;
+        var cell = document.createElement("td");
+        cell.id = "ttbl";
+        if ((modeList.value == "2")) cell.innerHTML = timeTable;
+        else cell.innerHTML = zakresBtn
+        cell.rowSpan = "10"
+        parentRow.appendChild(cell);
 
-    const styleTxt = `#ttbl td,#ttbl th {padding: 5px 3px; border-bottom: grey solid 1px;} #ttbl colgroup {border:grey solid 1px; padding: 2px;} #ttbl button {width: 100%; margin: 0px}#ttbl th,#ttbl tr td:first-child { border: gray solid 2px; font-weight: 600; background-color: #58585844 }`
-    var styleEl = document.createElement("style");
-    styleEl.innerHTML = styleTxt
-    document.querySelector("head").appendChild(styleEl)
+        const styleTxt = `#ttbl td,#ttbl th {padding: 5px 3px; border-bottom: grey solid 1px;} #ttbl colgroup {border:grey solid 1px; padding: 2px;} #ttbl button {width: 100%; margin: 0px}#ttbl th,#ttbl tr td:first-child { border: gray solid 2px; font-weight: 600; background-color: #58585844 }`
+        var styleEl = document.createElement("style");
+        styleEl.innerHTML = styleTxt
+        document.querySelector("head").appendChild(styleEl)
+    }
+    else //if(document.getElementsByName("ctl00$ctl00$ContentBodyBase$ContentBody$dropDownListTimeSchedule [selected]").innerText != "...")
+        //
+    {
+        var inputDataOd = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDate_TextBoxDate")
+        var inputDataDo = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDateTo_TextBoxDate")
+        inputDataDo.disabled="";
+        inputDataDo.classList.remove("aspNetDisabled");
+
+        inputCzas.classList.add("poleTimeControl")
+        
+        if (inputOd.value == "" || inputDataOd.value == "" || inputDataDo.value == "" || inputDo.value == "" || inputCzas.value == "") {
+            saveButton.style.display = "none";
+            afterSave.style.display = "block";
+        }
+    }
 })();
