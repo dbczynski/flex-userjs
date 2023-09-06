@@ -1,13 +1,15 @@
 // ==UserScript==
 // @name         Select2 for beeoffice
 // @namespace    https://app.beeoffice.com
-// @version      0.3
+// @version      0.4
 // @description  Make dropdown boxes searchable for now only first one...
 // @author       Pscola🐝 :-), Damian Dembczyński
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=beeoffice.com
 // @require		 https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js
 // @require		 https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js
 // @resource     SELECT2_CSS https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css
+// @updateURL    https://raw.githubusercontent.com/dbczynski/flex-userjs/main/Select2%20for%20beeoffice.js
+// @downloadURL  https://raw.githubusercontent.com/dbczynski/flex-userjs/main/Select2%20for%20beeoffice.js
 // @grant        GM_getResourceText
 // @grant        GM_addStyle
 // @match        https://app.beeoffice.com/*

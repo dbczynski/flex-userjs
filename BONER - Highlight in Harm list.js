@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         BONER - Highlight in Harm list
 // @namespace    https://app.beeoffice.com
-// @version      0.1
+// @version      0.2
 // @description  Highlights chosen option
 // @author       Damian Dembczynski
 // @match        https://app.beeoffice.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=beeoffice.com
+// @updateURL    https://raw.githubusercontent.com/dbczynski/flex-userjs/main/BONER%20-%20Highlight%20in%20Harm%20list.js
+// @downloadURL  https://raw.githubusercontent.com/dbczynski/flex-userjs/main/BONER%20-%20Highlight%20in%20Harm%20list.js
 // @grant        none
 // ==/UserScript==
 

@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         Harm Blame
 // @namespace    https://app.beeoffice.com
-// @version      0.1
+// @version      0.2
 // @description  Write last editor into desc
 // @author       Damian Dembczyński
 // @match        https://app.beeoffice.com/Ustawienia/TimeSchedules/TimeSchedulesDetails/TimeSchedulesDEtailsEdit.aspx*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=beeoffice.com
+// @updateURL    https://raw.githubusercontent.com/dbczynski/flex-userjs/main/Harm%20Blame.js
+// @downloadURL  https://raw.githubusercontent.com/dbczynski/flex-userjs/main/Harm%20Blame.js
 // @grant        GM_log
 // @run-at       document-end
 // ==/UserScript==

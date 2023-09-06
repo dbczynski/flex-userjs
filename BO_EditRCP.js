@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         Beeoffice_EditRCP
 // @namespace    https://app.beeoffice.com
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       You
 // @match        https://app.beeoffice.com/TimeRecords/TimeRecordEdit.aspx*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=beeoffice.com
+// @updateURL    https://raw.githubusercontent.com/dbczynski/flex-userjs/main/BO_EditRCP.js
+// @downloadURL  https://raw.githubusercontent.com/dbczynski/flex-userjs/main/BO_EditRCP.js
 // @grant        none
 // ==/UserScript==
 

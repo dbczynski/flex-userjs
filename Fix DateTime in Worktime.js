@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         Fix DateTime in Worktime
 // @namespace    https://app.beeoffice.com
-// @version      0.3
+// @version      0.4
 // @description  Fix DateTime in Worktime to full length (with seconds)
 // @author       Pszczoła 🐝
 // @match        https://app.beeoffice.com/TimeRecords/TimeRecordEdit.aspx*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=beeoffice.com
+// @updateURL    https://raw.githubusercontent.com/dbczynski/flex-userjs/main/Fix%20DateTime%20in%20Worktime.js
+// @downloadURL  https://raw.githubusercontent.com/dbczynski/flex-userjs/main/Fix%20DateTime%20in%20Worktime.js
 // @grant        none
 // ==/UserScript==
 

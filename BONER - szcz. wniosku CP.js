@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         BONER - szcz. wniosku CP
 // @namespace    https://app.beeoffice.com/
-// @version      0.0.5
+// @version      0.0.6
 // @description  BeeOffice New Extensions Reduced - wniosek o zmianę czasu pracy - szczegóły
 // @author       Damian Dembczyński, Michał Kozłowski
 // @match        https://app.beeoffice.com/HRWorktime/HRWorktimeEdit.aspx?*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=beeoffice.com
+// @updateURL    https://raw.githubusercontent.com/dbczynski/flex-userjs/main/BONER%20-%20szcz.%20wniosku%20CP.js
+// @downloadURL  https://raw.githubusercontent.com/dbczynski/flex-userjs/main/BONER%20-%20szcz.%20wniosku%20CP.js
 // @grant        GM_log
 // @run-at       document-end
 // ==/UserScript==
