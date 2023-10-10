@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BONER - szcz. harm
 // @namespace    https://app.beeoffice.com/
-// @version      0.0.7
+// @version      0.0.8
 // @description  BeeOffice New Extensions Reduced - szczegóły harmonogramów
 // @author       Damian Dembczyński
 // @match        https://app.beeoffice.com/Ustawienia/TimeSchedules/TimeSchedulesDetails/TimeSchedulesDEtailsEdit.aspx*
@@ -31,6 +31,9 @@
 // - minor UI improvments
 //v0.0.7
 // - adding compatibility with hour-time schedule
+//v0.0.8
+// - removing compatibility with hour-time schedule as it was added to website js
+
 
 (function () {
     'use strict';
@@ -167,8 +170,6 @@
     {
         var inputDataOd = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDate_TextBoxDate")
         var inputDataDo = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDateTo_TextBoxDate")
-        inputDataDo.disabled="";
-        inputDataDo.classList.remove("aspNetDisabled");
 
         inputCzas.classList.add("poleTimeControl")
         
