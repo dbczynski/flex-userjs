@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Harm Blame
 // @namespace    https://app.beeoffice.com
-// @version      0.2
+// @version      0.3
 // @description  Write last editor into desc
 // @author       Damian Dembczyński
 // @match        https://app.beeoffice.com/Ustawienia/TimeSchedules/TimeSchedulesDetails/TimeSchedulesDEtailsEdit.aspx*
@@ -37,10 +37,10 @@
     forBtnParent.innerHTML = `
     <table>
     <tr style="border: 1px solid purple"><td onclick="forFn('')">___</td></tr>
-    <tr style="border: 1px solid purple"><td onclick="forFn(' ∵ Ania')">Ania &nbsp;</td></tr>
+    <tr style="border: 1px solid purple"><td onclick="forFn(' ∵ Zuz')">Zuz &nbsp;</td></tr>
     <tr style="border: 1px solid purple"><td onclick="forFn(' ∵ Marl')">Marl &nbsp;</td></tr>
     <tr style="border: 1px solid purple"><td onclick="forFn(' ∵ Karo')">Karo &nbsp;</td></tr>
-    <tr style="border: 1px solid purple"><td onclick="forFn(' ∵ Vёla')">Vёla &nbsp;</td></tr>
+    <tr style="border: 1px solid purple"><td onclick="forFn(' ∵ Wiol')">Wiol &nbsp;</td></tr>
     <tr style="border: 1px solid purple"><td onclick="forFn(' ∵ Dywan')">Dywan &nbsp;</td></tr>
     <tr style="border: 1px solid purple"><td onclick="forFn(' ∵ Pack')">Pack &nbsp;</td></tr>
     </table>`
