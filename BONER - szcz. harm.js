@@ -33,8 +33,12 @@
 // - adding compatibility with hour-time schedule
 //v0.0.8
 // - removing compatibility with hour-time schedule as it was added to website js
-//v0.0.
+//v0.0.9
 // - adding :30 button
+
+// TODO
+// - Add compatibility for selectize/select2
+
 
 (function () {
     'use strict';
