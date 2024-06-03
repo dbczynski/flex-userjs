@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BONER - szcz. harm
 // @namespace    https://app.beeoffice.com/
-// @version      0.0.8
+// @version      0.0.9
 // @description  BeeOffice New Extensions Reduced - szczegóły harmonogramów
 // @author       Damian Dembczyński
 // @match        https://app.beeoffice.com/Ustawienia/TimeSchedules/TimeSchedulesDetails/TimeSchedulesDEtailsEdit.aspx*
@@ -33,7 +33,8 @@
 // - adding compatibility with hour-time schedule
 //v0.0.8
 // - removing compatibility with hour-time schedule as it was added to website js
-
+//v0.0.
+// - adding :30 button
 
 (function () {
     'use strict';
@@ -97,6 +98,11 @@
         document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDateTo_TextBoxTime").value = endTime;
         disableEnableSave();
     }
+    function ttbl30(){
+        document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDate_TextBoxTime").value = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDate_TextBoxTime").value.split(':')[0]+":30";
+        document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDateTo_TextBoxTime").value = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDateTo_TextBoxTime").value.split(':')[0]+":30";
+        disableEnableSave();
+    }
     function setMode(value){
         document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dropDownListMode").value = value;
         disableEnableSave();
@@ -144,7 +150,9 @@
     <tr> <td> 7 i 15 </td>
          <td><button type="button" onclick='ttbl("07:00","15:00")' id="7-15">7 - 15</button></td>
          <td><button type="button" onclick='ttbl("15:00","23:00")' id="15-23">15 - 23</button></td>
-         <td><button type="button" onclick='ttbl("9:00","17:00")' id="9-17">9 - 17</button></td>
+         <td><button type="button" onclick='ttbl("09:00","17:00")' id="9-17">9 - 17</button></td>
+         <td><button type="button" onclick='ttbl30()' id="30" >:30</button></td>
+         <td></td>
     </tr>
     <tr> <td></td>
          <td colspan="2">
