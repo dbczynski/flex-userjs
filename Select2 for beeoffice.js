@@ -19,6 +19,8 @@
 
 /*************************
 Version changes
+0.4
+Select2 on all selects
 0.3
 Added highlight in Harm list
 0.2.1
@@ -50,6 +52,6 @@ Test version of select2
         GM_addStyle(style_dark);
     }
     setTimeout(function () {
-        $('.DelForm select:first, #ctl00_ctl00_ContentBodyBase_ContentBody_NeOListControl_filterControl_timeschedule_id_2_name_DropDownListRef, #ctl00_ctl00_ContentBodyBase_ContentBody_DropDownListEmployee')
+        $('select:not(.selectized, #ctl00_ctl00_ContentBodyBase_ContentBody_dropDownListMode)')
             .select2() },1)
 })();
