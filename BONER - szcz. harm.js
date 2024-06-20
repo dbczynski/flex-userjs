@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         BONER - szcz. harm
 // @namespace    https://app.beeoffice.com/
-// @version      0.0.9
+// @version      0.1.0
 // @description  BeeOffice New Extensions Reduced - szczegóły harmonogramów
-// @author       Damian Dembczyński
+// @author       Damian Dembczyński, 🐝
 // @match        https://app.beeoffice.com/Ustawienia/TimeSchedules/TimeSchedulesDetails/TimeSchedulesDEtailsEdit.aspx*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=beeoffice.com
 // @updateURL    https://raw.githubusercontent.com/dbczynski/flex-userjs/main/BONER%20-%20szcz.%20harm.js
@@ -35,6 +35,8 @@
 // - removing compatibility with hour-time schedule as it was added to website js
 //v0.0.9
 // - adding :30 button
+//v0.1.0
+// - disabling uselessButton 
 
 // TODO
 // - Add compatibility for selectize/select2
@@ -50,10 +52,11 @@
     var inputOd = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDate_TextBoxTime");
     var inputDo = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_dateTimeControlDateTo_TextBoxTime");
     var inputCzas = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_textBoxTime");
-    const uselessButton = document.createElement("button");
-    uselessButton.id = "accept";
-    uselessButton.style.border = "none";
-    parentRow.appendChild(uselessButton);
+
+    // const uselessButton = document.createElement("button");
+    // uselessButton.id = "accept";
+    // uselessButton.style.border = "none";
+    // parentRow.appendChild(uselessButton);
 
     const saveButton = document.getElementById("ctl00_ctl00_ContentBodyBase_ContentBody_NeOFormControl_ButtonSave_ButtonSave");
     const afterSave = document.createElement("div")
