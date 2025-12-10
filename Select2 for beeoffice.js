@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Select2 for beeoffice
 // @namespace    https://app.beeoffice.com
-// @version      0.4
+// @version      0.4.1
 // @description  Make dropdown boxes searchable for now only first one...
 // @author       Pscola🐝 :-), Damian Dembczyński
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=beeoffice.com
@@ -19,6 +19,8 @@
 
 /*************************
 Version changes
+0.4.1
+Small style fixes
 0.4
 Select2 on all selects
 0.3
@@ -44,7 +46,7 @@ Test version of select2
 					background: #e4e4e4;
                     color: black;
 			}
-     .select2-container--default .select2-selection--single .select2-selection__rendered ,.select2-container--default .select2-results > .select2-results__options, .select2-search--dropdown {
+     .select2-container--default .select2-selection--single .select2-selection__rendered ,.select2-container--default .select2-results > .select2-results__options, .select2-search--dropdown,  .select2-search__field  {
           background: #3c3838;
           color: white;
     }`;
